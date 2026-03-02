@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SUPREMACY ELITE</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#1a1a1a;
+color:#f5f5f5;
+}
+.about-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap:20px;
+  justify-items:center;
+  margin-top:30px;
+}
+
+.about-card{
+  background:#2e2e2e;
+  border:1px solid #666;
+  border-radius:14px;
+  padding:20px;
+  width:100%;
+  max-width:300px;
+  box-shadow:0 0 20px #ffffff22;
+  transition:0.3s;
+  text-align:left;
+}
+
+.about-card:hover{
+  transform:scale(1.03);
+  box-shadow:0 0 30px #ffffff55;
+}
+
+.about-card h3{
+  margin-bottom:10px;
+  color:#fff;
+  text-shadow:0 0 8px #ffffff33;
+}
+
+.about-card p{
+  color:#ddd;
+  font-size:14px;
+  line-height:1.5;
+}
+
+.about-card a{
+  color:#aaa;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.about-card a:hover{
+  color:#fff;
+  text-shadow:0 0 10px #ffffff66;
+}
+
+/* HEADER */
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 30px;
+background:#2a2a2a;
+border-bottom:2px solid #888;
+box-shadow:0 0 25px #ffffff33;
+}
+
+.logo-wrap{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo-wrap img{
+width:55px;
+height:55px;
+border-radius:10px;
+object-fit:cover;
+border:2px solid #ccc;
+box-shadow:0 0 20px #ffffff66;
+}
+
+nav{
+text-align:center;
+padding:12px;
+background:#242424;
+border-bottom:1px solid #555;
+}
+
+nav a{
+margin:20px;
+cursor:pointer;
+font-weight:bold;
+color:#ddd;
+transition:0.3s;
+}
+
+nav a:hover{
+color:#ffffff;
+text-shadow:0 0 15px #ffffffaa;
+}
+
+section{
+display:none;
+padding:40px;
+text-align:center;
+}
+
+.active{display:block;}
+
+.member-card{
+display:inline-block;
+background:#2e2e2e;
+border:1px solid #666;
+border-radius:16px;
+padding:20px;
+margin:15px;
+width:240px;
+position:relative;
+transition:0.3s;
+box-shadow:0 0 20px #ffffff22;
+}
+
+.member-card:hover{
+transform:scale(1.05);
+box-shadow:0 0 30px #ffffff99;
+}
+
+.member-card img{
+width:100px;
+height:100px;
+border-radius:12px;
+border:2px solid #ccc;
+object-fit:cover;
+margin-bottom:10px;
+box-shadow:0 0 15px #ffffff55;
+}
+
+.member-card h3{
+margin:5px 0;
+}
+
+.member-card p{
+font-size:14px;
+color:#e0e0e0;
+}
+
+.menu{
+position:absolute;
+top:8px;
+right:10px;
+cursor:pointer;
+font-size:18px;
+color:#ddd;
+}
+
+button{
+background:#3a3a3a;
+border:1px solid #aaa;
+color:white;
+padding:8px 14px;
+cursor:pointer;
+border-radius:8px;
+margin:5px;
+transition:0.3s;
+}
+
+button:hover{
+background:white;
+color:black;
+box-shadow:0 0 15px white;
+}
+
+input,select{
+padding:8px;
+margin:6px;
+background:#2a2a2a;
+border:1px solid #aaa;
+color:white;
+width:85%;
+border-radius:8px;
+}
+
+.modal{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:#2b2b2b;
+padding:25px;
+display:none;
+z-index:1000;
+border-radius:14px;
+box-shadow:0 0 35px #ffffff66;
+width:350px;
+}
+
+footer{
+text-align:center;
+padding:15px;
+border-top:1px solid #666;
+background:#2a2a2a;
+margin-top:40px;
+color:#ccc;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo-wrap">
+<img id="mainLogo" src="https://ibb.co.com/3Y5j55Js">
+<h1>SUPREMACY ELITE</h1>
+</div>
+<div>
+<button onclick="showLogin()">LOGIN</button>
+<button onclick="openLogoModal()" id="logoBtn" style="display:none;">Edit Logo</button>
+</div>
+</header>
+
+<nav>
+<a onclick="showPage('home')">Home</a>
+<a onclick="showPage('about')">About</a>
+<a onclick="showPage('members')">Members</a>
+<span id="adminNav" style="display:none;">
+<a onclick="showPage('admin')">Admin</a>
+</span>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="active">
+<h2>Official Supremacy</h2>
+<div id="officialHome"></div>
+
+<h2>SAMP Supremacy</h2>
+<div id="sampHome"></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <h2>About Supremacy</h2>
+    
+    <div class="about-grid">
+    
+      <div class="about-card">
+        <h3>Sejarah</h3>
+        <p>SUPREMACY ADALAH COMMUNITY YANG BERGERAK DI BEBERAPA GAME, SUPREMACY SENDIRI DI DIDIRKAN OLEH JIE DAN FELIX PADA TANGGAL 16 AGUSTUS 2023 DAN ADA BEBERAPA ORANG YANG IKUT ANDIL DALAM TERCIPTANYA SUPREMACY. SUPREMACY BUKAN CUMA KOMUNITAS, TAPI INI ADALAH KELUARGA.</p>
+      </div>
+    
+      <div class="about-card">
+        <h3>Referensi About Roleplay</h3>
+        <p>Motorcycle : <a href="https://en.wikipedia.org/wiki/Outlaws_Motorcycle_Club" target="_blank">MC Referensi</a></p>
+        <p>Cartel : <a href="https:id.wikipedia.org/wiki/Kartel_Sinaloa#:~:text=Latar%20belakang,-Kota%20Culiac%C3%A1n%2C%20Sinaloa&text=Pedro%20Avil%C3%A9s%20P%C3%A9rez%20merupakan%20raja,Guzm%C3%A1n%Loera%20(EL%20Chapo)." target="_blank">Kartel Referensi</a></p>
+    </div>
+    
+      <div class="about-card">
+        <h3>About Server Roleplay</h3>
+        <p>NEXOTIS RP</p>
+        <p>INNOCENT RP</p>
+        <p>GRAND COUNTRY RP</p>
+      </div>
+    
+      <div class="about-card">
+        <h3>Platform</h3>
+        <p>SUPREMACY ini bergerak di SA:MP, ZEPETO, Mobile Legends, dan berbagai platform lain. Kami menjadikan Supremacy sebagai keluarga, bukan sekadar komunitas.</p>
+      </div>
+    
+      <div class="about-card">
+        <h3>Social Media</h3>
+        <p>
+          Discord: <a href="https://discord.gg/9jZ5gbCKuZ" target="_blank">Supremacy SAMP</a> | <a href="https://discord.gg/yTYVMwqNJ3" target="_blank">Supremacy Official</a><br>
+          TikTok: <a href="https://www.tiktok.com/@supremacy_m.c" target="_blank">Supre SAMP</a> | <a href="https://www.tiktok.com/@supremacyzpt" target="_blank">Supre Official</a>
+        </p>
+      </div>
+    
+    </div>
+</section>
+
+<!-- MEMBERS -->
+<section id="members">
+
+    <h2>Members</h2>
+    
+    <div style="margin-bottom:30px;">
+    <button onclick="filterDivision('official')">Official 👑</button>
+    <button onclick="filterDivision('samp')">SAMP 🎮</button>
+    </div>
+    
+    <div id="filteredMembers"></div>
+    
+</section>
+
+<!-- ADMIN -->
+<section id="admin">
+<h2>Tambah Member</h2>
+<input id="newName" placeholder="Nama">
+<input id="newRole" placeholder="Role">
+<input id="newBio" placeholder="Bio">
+<input type="file" id="newImg">
+<select id="newDiv">
+<option value="official">Official</option>
+<option value="samp">SAMP</option>
+</select>
+<br>
+<button onclick="addMember()">Tambah</button>
+<button onclick="logout()">Logout</button>
+</section>
+
+<!-- LOGIN -->
+<section id="loginPage">
+<h2>Login Admin</h2>
+<input id="adminUser" placeholder="Username">
+<input id="adminPass" type="password" placeholder="Password">
+<br>
+<button onclick="login()">Login</button>
+</section>
+
+<!-- EDIT MODAL -->
+<div id="editModal" class="modal">
+<h3>Edit Member</h3>
+<input id="editName">
+<input id="editRole">
+<input id="editBio">
+<input type="file" id="editImg">
+<select id="editDiv">
+<option value="official">Official</option>
+<option value="samp">SAMP</option>
+</select>
+<br>
+<button onclick="saveEdit()">Simpan</button>
+<button onclick="deleteMember()">Hapus</button>
+<button onclick="closeEdit()">Batal</button>
+</div>
+
+<!-- LOGO MODAL -->
+<div id="logoModal" class="modal">
+<h3>Upload Logo</h3>
+<input type="file" id="logoFile">
+<button onclick="saveLogo()">Simpan</button>
+<button onclick="closeLogo()">Batal</button>
+</div>
+
+<footer>
+© 2026 Supremacy Elite
+</footer>
+
+<script>
+
+let role="guest";
+let editIndex=null;
+let currentFilter = "official";
+
+let members=[
+{name:"Felix",role:"Founder Official",bio:"Leader utama Official Supremacy",img:"https://via.placeholder.com/100",div:"official"},
+{name:"Grey",role:"Leader Official",bio:"Pengatur struktur Official",img:"https://via.placeholder.com/100",div:"official"},
+{name:"Jie",role:"Core Official",bio:"Support dan penggerak tim",img:"https://via.placeholder.com/100",div:"official"},
+{name:"Abay",role:"Founder SAMP",bio:"Founder divisi SAMP",img:"https://via.placeholder.com/100",div:"samp"},
+{name:"Kael",role:"CO SAMP",bio:"Wakil divisi SAMP",img:"https://via.placeholder.com/100",div:"samp"}
+];
+
+if(localStorage.getItem("supMembers")){
+members=JSON.parse(localStorage.getItem("supMembers"));
+}
+
+function saveData(){
+localStorage.setItem("supMembers",JSON.stringify(members));
+}
+
+function showPage(id){
+document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+render();
+}
+
+function showLogin(){ showPage("loginPage"); }
+
+function login(){
+let u=adminUser.value;
+let p=adminPass.value;
+if(u==="admin" && p==="123"){
+role="admin";
+adminNav.style.display="inline";
+logoBtn.style.display="inline";
+showPage("admin");
+}else alert("Login gagal");
+}
+
+function logout(){
+role="guest";
+adminNav.style.display="none";
+logoBtn.style.display="none";
+showPage("home");
+}
+
+function render(){
+
+// HOME tetap
+officialHome.innerHTML="";
+sampHome.innerHTML="";
+
+// MEMBERS FILTERED
+filteredMembers.innerHTML="";
+
+members.forEach((m,i)=>{
+
+let card=`
+<div class="member-card">
+${role==="admin"?`<div class="menu" onclick="openEdit(${i})">⋮</div>`:""}
+<img src="${m.img}">
+<h3>${m.name}</h3>
+<p><b>${m.role}</b></p>
+<p>${m.bio}</p>
+</div>`;
+
+// HOME
+if(m.div==="official") officialHome.innerHTML+=card;
+if(m.div==="samp") sampHome.innerHTML+=card;
+
+// MEMBERS (filtered 1 divisi)
+if(m.div===currentFilter){
+filteredMembers.innerHTML+=card;
+}
+
+});
+
+}
+
+function filterDivision(div){
+currentFilter = div;
+render();
+}
+
+function addMember(){
+let name=newName.value;
+let roleVal=newRole.value;
+let bio=newBio.value;
+let div=newDiv.value;
+let file=newImg.files[0];
+if(!name) return alert("Isi nama dulu");
+
+
+if(file){
+let reader=new FileReader();
+reader.onload=e=>{
+members.push({name:name,role:roleVal,bio:bio,img:e.target.result,div:div});
+saveData(); render();
+};
+reader.readAsDataURL(file);
+}
+}
+
+function openEdit(i){
+editIndex=i;
+let m=members[i];
+editName.value=m.name;
+editRole.value=m.role;
+editBio.value=m.bio;
+editDiv.value=m.div;
+editModal.style.display="block";
+}
+
+function closeEdit(){ editModal.style.display="none"; }
+
+function saveEdit(){
+let m=members[editIndex];
+m.name=editName.value;
+m.role=editRole.value;
+m.bio=editBio.value;
+m.div=editDiv.value;
+
+let file=editImg.files[0];
+if(file){
+let reader=new FileReader();
+reader.onload=e=>{m.img=e.target.result; saveData(); render();};
+reader.readAsDataURL(file);
+}else{ saveData(); render(); }
+
+closeEdit();
+}
+
+function deleteMember(){
+members.splice(editIndex,1);
+saveData();
+render();
+closeEdit();
+}
+
+function openLogoModal(){ logoModal.style.display="block"; }
+function closeLogo(){ logoModal.style.display="none"; }
+
+function saveLogo(){
+let file=logoFile.files[0];
+if(file){
+let reader=new FileReader();
+reader.onload=e=>{
+localStorage.setItem("supLogo",e.target.result);
+mainLogo.src=e.target.result;
+};
+reader.readAsDataURL(file);
+}
+closeLogo();
+}
+
+render();
+</script>
+
+</body>
+</html>
